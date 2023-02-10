@@ -8,28 +8,43 @@ app.onReady().then(() => {
     log("Error with code: ", Webex.Application.ErrorCodes[errorcode])
 });
 
-const transcriptContainer = document.getElementById('transcriptContainer');
+function send() {
+    console.log("In send func");
+    fetch('http://127.0.0.1:5000/send')
+    .then(response => response.json())
+    .then((data) => {
+      let transcript = data.transcript
+      let transcriptContainer = document.getElementById('transcriptContainer')
+      transcriptContainer.innerHTML = `<p>${transcript}</p>`
+    })
+
+    setTimeout(send, 5000);
+}
+
+send(); 
+
+
 
 // Get the meeting transcript
-window.webex.meetings.getTranscript().then((transcript) => {
-    // Create a list element
-    const transcriptList = document.createElement('ul');
+// window.webex.meetings.getTranscript().then((transcript) => {
+//     // Create a list element
+//     const transcriptList = document.createElement('ul');
      
-    // Iterate through each line of the transcript
-    transcript.forEach((line) => {
-        // Create a list item for each line
-        const lineItem = document.createElement('li');
+//     // Iterate through each line of the transcript
+//     transcript.forEach((line) => {
+//         // Create a list item for each line
+//         const lineItem = document.createElement('li');
 
-        // Set the inner text of the list item to the line
-        lineItem.innerText = line;
+//         // Set the inner text of the list item to the line
+//         lineItem.innerText = line;
 
-        // Append the list item to the list
-        transcriptList.appendChild(lineItem);
-    });
+//         // Append the list item to the list
+//         transcriptList.appendChild(lineItem);
+//     });
 
-    // Append the list to the transcript container
-    transcriptContainer.appendChild(transcriptList);
-});
+//     // Append the list to the transcript container
+//     transcriptContainer.appendChild(transcriptList);
+// });
 
 // Button click handler to set share URL
 function handleSetShare() {
