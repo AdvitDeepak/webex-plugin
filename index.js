@@ -9,13 +9,22 @@ app.onReady().then(() => {
 });
 
 function send() {
-    console.log("In send func");
     fetch('http://127.0.0.1:5000/send')
     .then(response => response.json())
     .then((data) => {
-      let transcript = data.transcript
-      let transcriptContainer = document.getElementById('transcriptContainer')
-      transcriptContainer.innerHTML = `<p>${transcript}</p>`
+      let summary = data.summary 
+      let actionables = data.actionables 
+      let time = data.time 
+      let uncertainty = data.uncertainty 
+
+      let summaryContainer = document.getElementById('summaryContainer')
+      summaryContainer.innerHTML = `<div>${summary}</div>`
+      let actionablesContainer = document.getElementById('actionablesContainer')
+      actionablesContainer.innerHTML = `<div>${actionables}</div>`
+      let timeContainer = document.getElementById('timeContainer')
+      timeContainer.innerHTML = `<div>${time}</div>`
+      let uncertaintyContainer = document.getElementById('uncertaintyContainer')
+      uncertaintyContainer.innerHTML = `<div>${uncertainty}</div>`
     })
 
     setTimeout(send, 5000);
@@ -23,40 +32,6 @@ function send() {
 
 send(); 
 
-
-
-// Get the meeting transcript
-// window.webex.meetings.getTranscript().then((transcript) => {
-//     // Create a list element
-//     const transcriptList = document.createElement('ul');
-     
-//     // Iterate through each line of the transcript
-//     transcript.forEach((line) => {
-//         // Create a list item for each line
-//         const lineItem = document.createElement('li');
-
-//         // Set the inner text of the list item to the line
-//         lineItem.innerText = line;
-
-//         // Append the list item to the list
-//         transcriptList.appendChild(lineItem);
-//     });
-
-//     // Append the list to the transcript container
-//     transcriptContainer.appendChild(transcriptList);
-// });
-
-// Button click handler to set share URL
-function handleSetShare() {
-    // Replace this with the URL of your shared page
-    var url = "https://www.example.com/shared.html"
-    // "Shared App" is the title of the window or tab that will be created
-    app.setShareUrl(url, "", "Shared App").then(() => {
-        log("Set share URL", url);
-    }).catch((errorcode) => {
-        log("Error: ", Webex.Application.ErrorCodes[errorcode])
-    });
-}
 
 // Utility function to log app messages
 function log(type, data) {
