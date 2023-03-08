@@ -3,25 +3,50 @@
     <title style="text-align:center;">WebEx NLP Plugin</title>
     <script src="https://binaries.webex.com/static-content-pipeline/webex-embedded-app/v1/webex-embedded-app-sdk.js" defer></script>
     <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
 </head>
-<body>
-    <h1 style="color:whitesmoke">WebEx + Blaze - Plugin</h1>
-    <p>This is a research version of WebEx + Blaze's Research Plugin.</p>
-    <h2 style="color:whitesmoke">Meeting Summary</h2>
-    <body style="color:grey"> 
-        <div id="summaryContainer"></div>
-    </body>
-    <h2 style="color:whitesmoke">Actionables (Todo's)</h2>
-    <body style="color:grey">
-        <div id="actionablesContainer"></div>
-    </body>
-    <h2 style="color:whitesmoke">Topic Discussions</h2>
-    <body style="color:grey"> 
-        <div id="timeContainer"></div> 
-    </body>
-    <h2 style="color:whitesmoke">Areas of Uncertainty</h2>
-    <body style="color:grey">
-        <div id="uncertaintyContainer"></div>
-    </body>
+
+<body style="background-color:black; padding: 1rem; font-family: Quicksand">
+
+    <!-- Header -->
+
+    <div style="color:whitesmoke; justify-content:center;align-items: center;text-align: center; font-family:Quicksand"> 
+        <h1>BLAZE - WebEx Plugin</h1>
+        <p style="font-style:italic">This is a research version of a WebEx Plugin, powered by BLAZE. </p>
+    </div> 
+
+
+    <!-- Summary -->
+
+    <div class="card text-white bg-dark mb-3 border-info" style="width: 100rem; padding: 1rem; color:whitesmoke">
+        <div class="card-body">
+          <h5 class="card-title" >Meeting Summary </h5>
+          <h6 class="card-subtitle mb-2 text-muted">A live summary of the current meeting transcript, powered by BART.</h6>
+          <div class="card-text" id="summaryContainer"> </div>
+        </div>
+      </div>
+
+    
+    <!-- Topic Discussions -->
+
+    <div class="card text-white bg-dark mb-3 border-info" style="width: 100rem; padding: 1rem; color:whitesmoke">
+        <div class="card-body">
+          <h5 class="card-title" >Topic Discussions </h5>
+          <h6 class="card-subtitle mb-2 text-muted">A timestamped list of discussed points, powered by GPT-3.</h6>
+          <div class="card-text" id="timeContainer"> </div>
+        </div>
+      </div>
+
+    <!-- Actionable Items -->
+
+    <div class="card text-white bg-dark mb-3 border-info" style="width: 100rem; padding: 1rem; color:whitesmoke">
+        <div class="card-body">
+          <h5 class="card-title" >Actionables (Todo's) </h5>
+          <h6 class="card-subtitle mb-2 text-muted">A list of actionable items based on meeting, powered by GPT-3.</h6>
+          <div class="card-text" id="actionablesContainer"> </div>
+        </div>
+      </div>
+
 </body>
 </html>
